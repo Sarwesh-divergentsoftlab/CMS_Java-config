@@ -23,9 +23,6 @@ public class Home {
 			System.out.println("press 1 : Admin");
 			System.out.println("Press 2 : Doctor");
 			String n =sc.next();
-			
-			
-			
 			switch(n)
 			{
 			case "1":
