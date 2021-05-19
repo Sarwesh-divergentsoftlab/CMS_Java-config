@@ -1,6 +1,7 @@
 package com.divergentsl.cms;
 
-import java.sql.ResultSet;
+import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,11 +48,11 @@ public class CRUDdrug {
 				
 				case "2": //retrive drug
 						//drugDao= new DrugDao(new DatabaseManager());
-						ResultSet rsretrive = drugDao.showDrug();
-						while(rsretrive.next())
-						{
-							System.out.println(rsretrive.getString(1)+" "+rsretrive.getString(2)+" "+rsretrive.getString(3));
-						}
+					List<Map<String,Object>> list= drugDao.showDrug();
+					for(Map<String, Object> aDoctor : list)
+					{
+						System.out.println(aDoctor);
+					}
 						break;
 						
 				

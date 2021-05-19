@@ -1,8 +1,9 @@
 package com.divergentsl.cms;
 
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,12 +32,12 @@ public class Appointment  {
 	public void listPatient(String dname)throws SQLException {
 
 		Scanner sc= new Scanner (System.in);
-			ResultSet rsretrive =patientDao.showPatient();
+			List<Map<String, Object>> list =patientDao.showPatient();
 			
 			
-			while(rsretrive.next())
+			for(Map<String, Object> appoint : list)
 			{
-				System.out.println(rsretrive.getString(1)+" "+rsretrive.getString(2)+" "+rsretrive.getString(3)+" "+rsretrive.getString(4)+" "+rsretrive.getString(5));
+				System.out.println(appoint);
 			}
 			sc.close();
 		
@@ -46,12 +47,12 @@ public class Appointment  {
 	{
 		Scanner sc= new Scanner (System.in);
 		  	
-			ResultSet rsretrive =appDao.showAssignedAppointment(dId);
+			List<Map<String,Object>> list =appDao.showAssignedAppointment(dId);
 			
 			
-			while(rsretrive.next())
+			for(Map<String, Object> aDoctor : list)
 			{
-				System.out.println(rsretrive.getString(1)+" "+rsretrive.getString(2)+" "+rsretrive.getString(3)+" "+rsretrive.getString(4)+" "+rsretrive.getString(5));
+				System.out.println(aDoctor);
 			}
 			sc.close();
 	}
@@ -78,13 +79,11 @@ public class Appointment  {
 		Scanner sc= new Scanner (System.in);
 		System.out.print("enter patient id to see full description");
 		String pId=sc.next();
-			ResultSet rsretrive =appDao.patHistory(pId);
-			
-			
-			while(rsretrive.next())
-			{
-				System.out.println(rsretrive.getString(1)+" "+rsretrive.getString(2)+" "+rsretrive.getString(3)+" "+rsretrive.getString(4)+" "+rsretrive.getString(5)+" "+rsretrive.getString(6)+" "+rsretrive.getString(7)+" "+rsretrive.getString(8)+" "+rsretrive.getString(9));
-			}
+		List<Map<String, Object>> list =appDao.patHistory(pId);
+		for(Map<String, Object> aDoctor : list)
+		{
+			System.out.println(aDoctor);
+		}
 			sc.close();
 	}
 	
@@ -120,11 +119,11 @@ public class Appointment  {
 		}
 		public void generateInvoice()throws SQLException
 		{ 
-			ResultSet rsretrive =appDao.invoice();
-			while(rsretrive.next())
-			{
-				System.out.println(rsretrive.getString(1)+" "+rsretrive.getString(2)+" "+rsretrive.getString(3)+" "+rsretrive.getString(4)+" "+rsretrive.getString(5)+" "+rsretrive.getString(6)+" "+rsretrive.getString(7)+" "+rsretrive.getString(8)+" "+rsretrive.getString(9)+" "+rsretrive.getString(10)+" "+rsretrive.getString(11)+" "+rsretrive.getString(12)+" "+rsretrive.getString(13)+" \n\n");
-			}
+		List<Map<String,Object>>list =appDao.invoice();
+		for(Map<String, Object> aDoctor : list)
+		{
+			System.out.println(aDoctor);
+		}
 		}
 
 }

@@ -2,9 +2,11 @@ package com.divergentsl.cms.dao;
 
 //import java.sql.Connection;
 //import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+
 import java.sql.SQLException;
 //import java.sql.Statement;
+import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -50,13 +52,14 @@ public class LabtestDao {
 		return jdbcTemplate.update(sql);
 	}
 	
-	public ResultSet showLabtest()throws SQLException
+	public List<Map<String, Object>> showLabtest()throws SQLException
 	{
 //		Connection connection=databaseManager.getConnection();
 //		Statement st=connection.createStatement();
 		String sqlretrive = "SELECT * from labtest";
-		ResultSet rsretrive =jdbcTemplate.queryForObject(sqlretrive,ResultSet.class);
-		return rsretrive;
+		List<Map<String, Object>> list =jdbcTemplate.queryForList(sqlretrive);
+		
+		return list;
 	}
 	
 	public int updateName(String dname,String id) throws SQLException

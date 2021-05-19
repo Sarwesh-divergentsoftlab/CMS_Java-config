@@ -44,7 +44,7 @@ public class DoctorDao {
 	
 	public void insertDoctor(String name,String doctor_id,String fees,String degree,String prescription)throws SQLException{
 		
-		String sql="INSERT INTO doctor VALUES('"+name+"','"+doctor_id+"','"+fees+"','"+degree+"','"+prescription+"')";
+		String sql="INSERT INTO doctor (name,doctor_id,fees,degree,prescription) "+" VALUES('"+name+"','"+doctor_id+"','"+fees+"','"+degree+"','"+prescription+"')";
 	
 		int rowinsert= jdbcTemplate.update(sql);
 		
@@ -128,7 +128,7 @@ public class DoctorDao {
 		//PreparedStatement statement = null;
 		//statement =connection.prepareStatement("DELETE from doctor where doctor_id=?");
 		//statement.setString(1, idd);
-		return jdbcTemplate.update("DELETE from doctor where doctor_id='"+idd+"'",idd);
+		return jdbcTemplate.update("DELETE from doctor where doctor_id='"+idd+"'");
 	}
 	
 }

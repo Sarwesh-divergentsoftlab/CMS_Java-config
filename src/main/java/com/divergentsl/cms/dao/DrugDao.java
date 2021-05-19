@@ -1,7 +1,8 @@
 package com.divergentsl.cms.dao;
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -47,14 +48,14 @@ private JdbcTemplate jdbcTemplate;
 		
 	}
 	
-	public ResultSet showDrug() throws SQLException
+	public List<Map<String,Object>> showDrug() throws SQLException
 	{
 		
 //		Connection connection=databaseManager.getConnection();
 //		Statement st=connection.createStatement();
 		String sqlretrive = "SELECT * from drug";
-		ResultSet rsretrive =jdbcTemplate.queryForObject(sqlretrive,ResultSet.class);
-		return rsretrive;
+		List<Map<String,Object>> list =jdbcTemplate.queryForList(sqlretrive);
+		return list;
 	}
 	
 	public int updatedrugName(String drugname,String id)throws SQLException

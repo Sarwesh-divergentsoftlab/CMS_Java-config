@@ -1,6 +1,7 @@
 package com.divergentsl.cms;
 
-import java.sql.ResultSet;
+import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,10 +58,10 @@ public class CRUDpatient {
 			
 			case "2": //retrive patient
 				//	patientDao= new PatientDao(new DatabaseManager());
-					ResultSet rsretrive =patientDao.showPatient();
-					while(rsretrive.next())
+					List<Map<String, Object>> list=patientDao.showPatient();
+					for(Map<String, Object> aDoctor : list)
 					{
-						System.out.println(rsretrive.getString(1)+" "+rsretrive.getString(2)+" "+rsretrive.getString(3)+" "+rsretrive.getString(4)+" "+rsretrive.getString(5)+"\n");
+						System.out.println(aDoctor);
 					}
 					patientDao();
 					break;

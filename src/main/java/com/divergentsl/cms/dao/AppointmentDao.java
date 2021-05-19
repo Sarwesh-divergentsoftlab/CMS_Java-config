@@ -2,9 +2,11 @@ package com.divergentsl.cms.dao;
 
 //import java.sql.Connection;
 //import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+
 import java.sql.SQLException;
 //import java.sql.Statement;
+import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -37,13 +39,13 @@ public class AppointmentDao {
 //	this.databaseManager=databaseManager;	
 //	}
 	
-	public ResultSet showAssignedAppointment(String dId)throws SQLException
+	public List<Map<String , Object>> showAssignedAppointment(String dId)throws SQLException
 	{
 //			Connection connection=databaseManager.getConnection();
 //			Statement st = connection.createStatement();
 			String sqlretrive = "SELECT * from patient where doctor_id='"+dId+"'";
-			ResultSet rsretrive =jdbcTemplate.queryForObject(sqlretrive,ResultSet.class);
-			return rsretrive;
+			List<Map<String, Object>> list =jdbcTemplate.queryForList(sqlretrive);
+			return list;
 	}
 	
 	public int addPrescription(String pid,String pres) throws SQLException
@@ -56,13 +58,14 @@ public class AppointmentDao {
 		return jdbcTemplate.update(sql);
 	}
 	
-	public ResultSet patHistory(String pId) throws SQLException
+	public List<Map<String, Object>> patHistory(String pId) throws SQLException
 	{
 //		Connection connection=databaseManager.getConnection();
 //		Statement st = connection.createStatement();
 	
 		String sqlretrive = "SELECT * from patient where patient_id='"+pId+"'";
-		return jdbcTemplate.queryForObject(sqlretrive, ResultSet.class);
+		List<Map<String, Object>> list = jdbcTemplate.queryForList(sqlretrive);
+		return list;
 				
 	}
 	
@@ -81,13 +84,14 @@ public class AppointmentDao {
 		return jdbcTemplate.update(sql);
 	}
 	
-	public  ResultSet invoice()throws SQLException 
+	public List<Map<String, Object>>  invoice()throws SQLException 
 	{
 //		 Connection connection=databaseManager.getConnection();			
 //		 Statement st = connection.createStatement();
 			
 		String sqlretrive = "SELECT patient.name,patient.age,patient.patient_id,patient.weight,patient.problem,patient.app_date,patient.contact,patient.doctor_id,patient.prescription,doctor.name,doctor.fees,doctor.specializatio,doctor.prescription FROM patient JOIN doctor ON patient.doctor_id=doctor.doctor_id\r\n";
-		return jdbcTemplate.queryForObject(sqlretrive,ResultSet.class);
+		List<Map<String, Object>> list = jdbcTemplate.queryForList(sqlretrive);
+		return list;
 	}
 
 }
